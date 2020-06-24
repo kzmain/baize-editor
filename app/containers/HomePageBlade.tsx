@@ -1,95 +1,54 @@
 import React from 'react';
-import { Col, Layout, Row, Breadcrumb } from 'antd';
-import NavSideBarBlade from '../components/NavSideBarBlade';
-
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Row } from 'antd';
+import SideNavBarBlade from '../components/SideNavBarBlade';
+import ContentNoteContentBlade from '../components/ContentNoteContentBlade';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class HomePageBlade extends React.Component {
+  ids = {
+    contDomId: 'window',
+    leftDomId: 'test-nav1',
+    navGutterId: 'nav-gutter',
+    rightDomId: 'test-content',
+  };
+
+  storage = {
+    leftDivWidth: ['nav-width', 160],
+  };
+
+  sConfig = {
+    SnapOffset: 20,
+    WidthNarrow: 50,
+    GutterWidth: 20,
+  };
+
+  cids = {
+    contDomId: this.ids.rightDomId,
+    leftDomId: 'note-nav-width',
+    navGutterId: 'note-nav-gutter',
+    rightDomId: 'editor-content',
+  };
+
+  cstorage = {
+    leftDivWidth: ['note-nav-width', 160],
+  };
+
   render() {
     return (
       <Layout>
-        <Row className="flex" style={{ width: '100vw' }}>
-          <NavSideBarBlade />
-
-          <Row
-            className="flex"
-            id="test-content"
-            flex="auto"
-            style={{
-              height: '100vh',
-              // backgroundColor: '#1fc8db',
-              overflowY: 'auto',
-              // backgroundImage:
-              //   'linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)',
-            }}
-          >
-            <Col
-              flex="100px"
-              style={{ height: '100vh', backgroundColor: 'darkgreen' }}
-            />
-            <Layout
-              flex="auto"
-              className="site-layout"
-              style={{
-                // backgroundColor: '#1fc8db',
-                overflowY: 'auto',
-                // backgroundImage:
-                //   'linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)',
-              }}
-            >
-              <Header
-                className="site-layout-background"
-                style={{ padding: 0 }}
-              />
-              <Content style={{ margin: '0 16px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                  <Breadcrumb.Item>User</Breadcrumb.Item>
-                  <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                </Breadcrumb>
-                <div
-                  className="site-layout-background"
-                  style={{ padding: 24, minHeight: 360 }}
-                >
-                  Bill is a cat.
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                </div>
-              </Content>
-              <Footer style={{ textAlign: 'center' }}>
-                Ant Design ©2018 Created by Ant UED
-              </Footer>
-            </Layout>
-          </Row>
+        <Row className="flex" style={{ width: '100vw', flexWrap: 'nowrap' }}>
+          <SideNavBarBlade
+            id={this.ids.leftDomId}
+            ids={this.ids}
+            storage={this.storage}
+            sConfig={this.sConfig}
+          />
+          <ContentNoteContentBlade
+            id={this.ids.rightDomId}
+            ids={this.cids}
+            storage={this.cstorage}
+            sConfig={this.sConfig}
+          />
         </Row>
       </Layout>
     );
