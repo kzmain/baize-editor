@@ -1,0 +1,10 @@
+{
+  "WINDOW": "window",
+  "NAVSIDEBAR": "test-nav",
+  "NAVGUTTER": "nav-gutter",
+  "CONTENT": "test-content",
+  "CONTENTNOTE": "content-note",
+  "CONTENTNOTENAV": "note-nav-width",
+  "CONTENTNOTEEDITOR": "editor-content",
+  "CONTENTNOTEGUTTER": "note-nav-gutter"
+}

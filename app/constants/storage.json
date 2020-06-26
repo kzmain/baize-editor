@@ -1,0 +1,10 @@
+{
+  "NAVWIDTH": {
+    "key": "nav-width",
+    "default": 160
+  },
+  "NOTENAVWIDH": {
+    "key": "note-nav-width",
+    "default": 160
+  }
+}

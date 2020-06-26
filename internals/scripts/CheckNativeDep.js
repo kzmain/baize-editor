@@ -31,10 +31,10 @@ ${chalk.bold(filteredRootDependencies.join(', '))} ${
  First, uninstall the packages from "./package.json":
 ${chalk.whiteBright.bgGreen.bold('yarn remove your-package')}
  ${chalk.bold(
-   'Then, instead of installing the package to the root "./package.json":'
+   'Then, instead of installing the package to the root "./content.json":'
  )}
 ${chalk.whiteBright.bgRed.bold('yarn add your-package')}
- ${chalk.bold('Install the package to "./app/package.json"')}
+ ${chalk.bold('Install the package to "./app/content.json"')}
 ${chalk.whiteBright.bgGreen.bold('cd ./app && yarn add your-package')}
  Read more about native dependencies at:
 ${chalk.bold(

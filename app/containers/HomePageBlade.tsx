@@ -1,56 +1,65 @@
 import React from 'react';
-import { Layout, Row } from 'antd';
-import SideNavBarBlade from '../components/SideNavBarBlade';
-import ContentNoteContentBlade from '../components/ContentNoteContentBlade';
+import NavSiderBlade from '../components/NavSiderBlade';
+import HomeBlade from '../components/HomeBlade';
+import ContentBlade from '../components/ContentBlade';
 
+const ids = require('../constants/ids.json');
+const storage = require('../constants/storage.json');
+const content = require('../constants/content.json');
 // eslint-disable-next-line react/prefer-stateless-function
 export default class HomePageBlade extends React.Component {
-  ids = {
-    contDomId: 'window',
-    leftDomId: 'test-nav1',
-    navGutterId: 'nav-gutter',
-    rightDomId: 'test-content',
-  };
-
-  storage = {
-    leftDivWidth: ['nav-width', 160],
+  domIds = {
+    contDomId: ids.WINDOW,
+    leftDomId: ids.NAVSIDEBAR,
+    navGutterId: ids.NAVGUTTER,
+    rightDomId: ids.CONTENT,
   };
 
   sConfig = {
-    SnapOffset: 20,
+    SnapOffset: 30,
     WidthNarrow: 50,
-    GutterWidth: 20,
+    GutterWidth: 10,
+    LeftDivStorage: [storage.NAVWIDTH.key, storage.NAVWIDTH.default],
   };
 
-  cids = {
-    contDomId: this.ids.rightDomId,
-    leftDomId: 'note-nav-width',
-    navGutterId: 'note-nav-gutter',
-    rightDomId: 'editor-content',
+  domRenders = {
+    leftRender: () => {
+      return (
+        <NavSiderBlade
+          breakpoint={this.sConfig.WidthNarrow + this.sConfig.SnapOffset}
+          handler={this.navClickHandler}
+        />
+      );
+    },
+    rightRender: () => {
+      return <ContentBlade type={content.NOTE} />;
+    },
   };
 
-  cstorage = {
-    leftDivWidth: ['note-nav-width', 160],
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      // eslint-disable-next-line react/no-unused-state
+      ContentType: '',
+    };
+  }
+
+  // ------------------ Nav  Block Config ------------------
+  navClickHandler = (contentType: string) => {
+    // eslint-disable-next-line react/no-unused-state
+    this.setState({ ContentType: contentType.key });
   };
+
+  // ------------------ Main Block Config ------------------
 
   render() {
     return (
-      <Layout>
-        <Row className="flex" style={{ width: '100vw', flexWrap: 'nowrap' }}>
-          <SideNavBarBlade
-            id={this.ids.leftDomId}
-            ids={this.ids}
-            storage={this.storage}
-            sConfig={this.sConfig}
-          />
-          <ContentNoteContentBlade
-            id={this.ids.rightDomId}
-            ids={this.cids}
-            storage={this.cstorage}
-            sConfig={this.sConfig}
-          />
-        </Row>
-      </Layout>
+      <HomeBlade
+        domRenders={this.domRenders}
+        domIds={this.domIds}
+        sConfig={this.sConfig}
+      />
     );
   }
 }

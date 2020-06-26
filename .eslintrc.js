@@ -1,13 +1,13 @@
 module.exports = {
   extends: 'erb/typescript',
   rules: {
-    // A temporary hack related to IDE not resolving correct package.json
+    // A temporary hack related to IDE not resolving correct content.json
     'import/no-extraneous-dependencies': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: './package.json',
     tsconfigRootDir: __dirname,
     createDefaultProgram: true,
   },
